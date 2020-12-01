@@ -1,6 +1,6 @@
 # RakBuku Java Netbeans
  
-RakBuku is a library management software where admin can add/view/delete librarian, books and return books.
+RakBuku is a admin library management software where admin can add/view/delete librarian, books and return books.
 
 Purpose Of Project: Final Exam Project
 
