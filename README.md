@@ -24,7 +24,7 @@ Front End and Back End
 1. Front End: Java Swing
 2. Back End: MySQL
  
- #Screenshoots App
+ # Screenshoots App
  ![Gambar1](https://github.com/diazamaliana/RakBuku_Java-Netbeans/blob/main/dokumen/Screenshot%20(283).png)
 
  ![Gambar2](https://github.com/diazamaliana/RakBuku_Java-Netbeans/blob/main/dokumen/Screenshot%20(286).png)
