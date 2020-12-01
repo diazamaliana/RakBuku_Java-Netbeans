@@ -4,6 +4,8 @@ RakBuku is a admin library management software where admin can add/view/delete l
 
 Purpose Of Project: Final Exam Project
 
+Languange : Indonesian
+
 Functional Requirements
 1. Admin
   Can add/view/delete librarian
