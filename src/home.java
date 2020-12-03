@@ -471,7 +471,7 @@ public class home extends javax.swing.JFrame {
             .addComponent(hapus2_value, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        segarkan2.setBackground(new java.awt.Color(204, 0, 0));
+        segarkan2.setBackground(new java.awt.Color(0, 102, 204));
 
         segarkan2_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         segarkan2_value.setForeground(new java.awt.Color(255, 255, 255));
@@ -487,7 +487,10 @@ public class home extends javax.swing.JFrame {
         segarkan2.setLayout(segarkan2Layout);
         segarkan2Layout.setHorizontalGroup(
             segarkan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(segarkan2_value, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, segarkan2Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(segarkan2_value, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         segarkan2Layout.setVerticalGroup(
             segarkan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -771,9 +774,9 @@ public class home extends javax.swing.JFrame {
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tab)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(footer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

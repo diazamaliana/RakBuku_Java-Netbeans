@@ -259,7 +259,7 @@ public class edit_peminjaman extends javax.swing.JDialog {
 
         jLabel5.setText("Jenis Buku");
 
-        jenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ensiklopedia", "Novel", "Komik", "Biografi", "Dongeng", "Karya Ilmiah" }));
+        jenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buku Teks", "Referensi", "Laporan Kerja Praktik", "Jurnal", "Majalah", "Tugas Akhir" }));
 
         jLabel6.setText("Judul Buku");
 
@@ -293,9 +293,9 @@ public class edit_peminjaman extends javax.swing.JDialog {
                         .addGroup(data_bukuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel8))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(kembali)
         );

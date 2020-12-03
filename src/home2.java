@@ -54,6 +54,8 @@ public class home2 extends javax.swing.JFrame {
         copyright();
         
         tampil_peminjaman();
+        tampil_buku();
+
        
     }
 
@@ -72,6 +74,8 @@ public class home2 extends javax.swing.JFrame {
         close_btn = new javax.swing.JLabel();
         timenow = new javax.swing.JLabel();
         about = new javax.swing.JLabel();
+        footer = new javax.swing.JPanel();
+        copyright = new javax.swing.JLabel();
         tab = new javax.swing.JTabbedPane();
         peminjaman = new javax.swing.JPanel();
         search_peminjaman = new placeholder.search();
@@ -80,8 +84,13 @@ public class home2 extends javax.swing.JFrame {
         result_peminjaman = new javax.swing.JLabel();
         segarkan1 = new javax.swing.JPanel();
         segarkan1_value = new javax.swing.JLabel();
-        footer = new javax.swing.JPanel();
-        copyright = new javax.swing.JLabel();
+        kelolabuku = new javax.swing.JPanel();
+        search_buku = new placeholder.search();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb_buku = new javax.swing.JTable();
+        result_buku = new javax.swing.JLabel();
+        segarkan2 = new javax.swing.JPanel();
+        segarkan2_value = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,6 +156,27 @@ public class home2 extends javax.swing.JFrame {
                 .addComponent(close_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(about))
             .addComponent(timenow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        footer.setBackground(new java.awt.Color(0, 102, 204));
+
+        copyright.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        copyright.setForeground(new java.awt.Color(255, 255, 255));
+        copyright.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        copyright.setText("© 2020 RakBuku. All Right Reserved.");
+
+        javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
+        footer.setLayout(footerLayout);
+        footerLayout.setHorizontalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(footerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(copyright, javax.swing.GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        footerLayout.setVerticalGroup(
+            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(copyright, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
         );
 
         peminjaman.setBackground(new java.awt.Color(255, 255, 255));
@@ -222,9 +252,9 @@ public class home2 extends javax.swing.JFrame {
                         .addComponent(result_peminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(search_peminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
                     .addGroup(peminjamanLayout.createSequentialGroup()
-                        .addGap(0, 791, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(segarkan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -243,50 +273,123 @@ public class home2 extends javax.swing.JFrame {
         );
 
         tab.addTab("Peminjaman", null, peminjaman, "Peminjaman");
-        peminjaman.getAccessibleContext().setAccessibleName("Peminjaman");
 
-        footer.setBackground(new java.awt.Color(0, 102, 204));
+        kelolabuku.setBackground(new java.awt.Color(255, 255, 255));
 
-        copyright.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        copyright.setForeground(new java.awt.Color(255, 255, 255));
-        copyright.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        copyright.setText("© 2020 RakBuku. All Right Reserved.");
+        search_buku.setToolTipText("Cari Data");
+        search_buku.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                search_bukuKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                search_bukuKeyTyped(evt);
+            }
+        });
 
-        javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
-        footer.setLayout(footerLayout);
-        footerLayout.setHorizontalGroup(
-            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(footerLayout.createSequentialGroup()
+        tb_buku.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Kode Buku", "Judul Buku", "Jenis", "Tanggal Terbit", "Pengarang", "Penerbit"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tb_buku);
+
+        result_buku.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        result_buku.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        segarkan2.setBackground(new java.awt.Color(0, 102, 204));
+
+        segarkan2_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        segarkan2_value.setForeground(new java.awt.Color(255, 255, 255));
+        segarkan2_value.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        segarkan2_value.setText("Segarkan Tabel");
+        segarkan2_value.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                segarkan2_valueMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout segarkan2Layout = new javax.swing.GroupLayout(segarkan2);
+        segarkan2.setLayout(segarkan2Layout);
+        segarkan2Layout.setHorizontalGroup(
+            segarkan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(segarkan2_value, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+        );
+        segarkan2Layout.setVerticalGroup(
+            segarkan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(segarkan2_value, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout kelolabukuLayout = new javax.swing.GroupLayout(kelolabuku);
+        kelolabuku.setLayout(kelolabukuLayout);
+        kelolabukuLayout.setHorizontalGroup(
+            kelolabukuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kelolabukuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(copyright, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(kelolabukuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kelolabukuLayout.createSequentialGroup()
+                        .addComponent(result_buku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(search_buku, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
+                    .addGroup(kelolabukuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(segarkan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        footerLayout.setVerticalGroup(
-            footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(copyright, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+        kelolabukuLayout.setVerticalGroup(
+            kelolabukuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kelolabukuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kelolabukuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(search_buku, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(result_buku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(segarkan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        tab.addTab("Daftar Buku", null, kelolabuku, "Kelola Buku");
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tab))
             .addComponent(footer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(header, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bodyLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
+                    .addGap(20, 20, 20)))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tab)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
                 .addComponent(footer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bodyLayout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(tab)
+                    .addGap(55, 55, 55)))
         );
-
-        tab.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,6 +427,25 @@ public class home2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         new pages.about(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_aboutMouseClicked
+
+    private void segarkan2_valueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segarkan2_valueMouseClicked
+        // TODO add your handling code here:
+        search_buku.setText("");
+        result_buku.setText("");
+        tampil_buku();
+    }//GEN-LAST:event_segarkan2_valueMouseClicked
+
+    private void search_bukuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_bukuKeyTyped
+        // TODO add your handling code here:
+        search_buku();
+    }//GEN-LAST:event_search_bukuKeyTyped
+
+    private void search_bukuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_bukuKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            search_buku();
+        }
+    }//GEN-LAST:event_search_bukuKeyPressed
 
     private void segarkan1_valueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segarkan1_valueMouseClicked
         // TODO add your handling code here:
@@ -460,7 +582,52 @@ public class home2 extends javax.swing.JFrame {
         }
     }
     
-    
+    private void tampil_buku() {
+        Object []baris = {"Kode Buku", "Judul Buku", "Jenis", "Tanggal Terbit", "Pengarang", "Penerbit"};
+        tbl2 = new DefaultTableModel(null, baris) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tb_buku.setModel(tbl2);
+        try {
+            Connection con = new database.connection().configDB();
+            String sql = "SELECT * FROM buku ORDER BY id ASC";
+            java.sql.Statement stat = con.createStatement();
+            java.sql.ResultSet hasil = stat.executeQuery(sql);
+            
+            while (hasil.next()) {
+                String jenis = null;
+                String kode = hasil.getString("kode");
+                String judul = hasil.getString("judul");
+                String tanggal = hasil.getString("tanggal");
+                String pengarang = hasil.getString("pengarang");
+                String penerbit = hasil.getString("penerbit");
+                
+                if (hasil.getString("jenis").equals("1")) {
+                    jenis = "Buku Teks";
+                } else if (hasil.getString("jenis").equals("2")) {
+                    jenis = "Referensi";
+                } else if (hasil.getString("jenis").equals("3")) {
+                    jenis = "Laporan Kerja Praktik";
+                } else if (hasil.getString("jenis").equals("4")) {
+                    jenis = "Jurnal";
+                } else if (hasil.getString("jenis").equals("5")) {
+                    jenis = "Majalah";
+                } else if (hasil.getString("jenis").equals("6")) {
+                    jenis = "Tugas Akhir";
+               }
+                
+                String[] data = {kode, judul, jenis, tanggal, pengarang, penerbit};
+                tbl2.addRow(data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal Menampilkan DATA!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+            dispose();
+        }
+    }
+
     
     
     private void search_peminjaman() {
@@ -509,7 +676,64 @@ public class home2 extends javax.swing.JFrame {
         } catch (Exception e) {}
     }
     
-    
+    private void search_buku() {
+        String query = search_buku.getText();
+        
+        Object []baris = {"Kode Buku", "Judul Buku", "Jenis", "Tanggal Terbit", "Pengarang", "Penerbit"};
+        tbl2 = new DefaultTableModel(null, baris) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tb_buku.setModel(tbl2);
+        
+        try {
+            Connection con = new database.connection().configDB();
+            String sql = "SELECT * FROM buku WHERE BINARY "
+                    + "kode LIKE '%"+query+"%' "
+                    + "OR judul LIKE '%"+query+"%' "
+                    + "OR tanggal LIKE '%"+query+"%' "
+                    + "OR pengarang LIKE '%"+query+"%' "
+                    + "OR penerbit LIKE '%"+query+"%' "
+                    + "ORDER BY id ASC";
+            java.sql.Statement stmt = con.createStatement();
+            java.sql.ResultSet hasil = stmt.executeQuery(sql);
+            
+            while (hasil.next()) {
+                String jenis = null;
+                String kode = hasil.getString("kode");
+                String judul = hasil.getString("judul");
+                String tanggal = hasil.getString("tanggal");
+                String pengarang = hasil.getString("pengarang");
+                String penerbit = hasil.getString("penerbit");
+
+                
+                if (hasil.getString("jenis").equals("1")) {
+                    jenis = "Buku Teks";
+                } else if (hasil.getString("jenis").equals("2")) {
+                    jenis = "Referensi";
+                } else if (hasil.getString("jenis").equals("3")) {
+                    jenis = "Laporan Kerja Praktik";
+                } else if (hasil.getString("jenis").equals("4")) {
+                    jenis = "Jurnal";
+                } else if (hasil.getString("jenis").equals("5")) {
+                    jenis = "Majalah";
+                } else if (hasil.getString("jenis").equals("6")) {
+                    jenis = "Tugas Akhir";
+                }
+                
+                String[] data = {kode, judul, jenis, tanggal, pengarang, penerbit};
+                tbl2.addRow(data);
+            }
+            
+            if (!query.equals("")) {
+                result_buku.setText("Hasil pencarian dari: '"+query+"'");
+            } else {
+                result_buku.setText("");
+            }
+        } catch (Exception e) {}
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel about;
@@ -519,12 +743,19 @@ public class home2 extends javax.swing.JFrame {
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel kelolabuku;
     private javax.swing.JPanel peminjaman;
+    private javax.swing.JLabel result_buku;
     private javax.swing.JLabel result_peminjaman;
+    private javax.swing.JTextField search_buku;
     private javax.swing.JTextField search_peminjaman;
     private javax.swing.JPanel segarkan1;
     private javax.swing.JLabel segarkan1_value;
+    private javax.swing.JPanel segarkan2;
+    private javax.swing.JLabel segarkan2_value;
     private javax.swing.JTabbedPane tab;
+    private javax.swing.JTable tb_buku;
     private javax.swing.JTable tb_peminjaman;
     private javax.swing.JLabel timenow;
     private javax.swing.JLabel title;

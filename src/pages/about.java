@@ -103,7 +103,7 @@ public class about extends javax.swing.JDialog {
         subtitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("COYRIGHT 2020");
+        jLabel1.setText("COPYRIGHT 2020");
 
         title1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         title1.setText("Diaz Amaliana 16/395389/TK/44681");
