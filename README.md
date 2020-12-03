@@ -19,6 +19,7 @@ Functional Requirements
 Tools to be used
 1. Netbeans IDE 8.2
 2. MySQL for the database.
+3. JDK 1.8.0_191
 
 Front End and Back End
 1. Front End: Java Swing
